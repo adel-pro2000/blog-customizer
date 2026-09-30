@@ -20,9 +20,16 @@ export const ArrowButton = ({
     <div
       role="button"
       aria-label="Открыть/Закрыть форму параметров статьи"
+      aria-expanded={isOpen}
       tabIndex={0}
       className={clsx(styles.container, { [styles.container_open]: isOpen })}
       onClick={onClick}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onClick();
+        }
+      }}
     >
       <img
         src={arrow}
