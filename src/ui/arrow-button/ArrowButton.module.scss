@@ -1,6 +1,7 @@
 .container {
 	position: fixed;
-	top: 31px;
+	top: 32px;
+	z-index: 2;
 	display: flex;
 	flex-shrink: 0;
 	justify-content: center;
@@ -22,7 +23,7 @@
 }
 
 .container_open {
-	transform: translate(616px);
+	transform: translate(614px);
 }
 
 .arrow {

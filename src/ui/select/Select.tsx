@@ -20,10 +20,19 @@ type SelectProps = {
   onChange?: (selected: OptionType) => void;
   onClose?: () => void;
   title?: string;
+  showSelectedOption?: boolean;
 };
 
 export const Select = (props: SelectProps): React.JSX.Element => {
-  const { options, placeholder, selected, onChange, onClose, title } = props;
+  const {
+    options,
+    placeholder,
+    selected,
+    onChange,
+    onClose,
+    title,
+    showSelectedOption = false,
+  } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const placeholderRef = useRef<HTMLDivElement>(null);
@@ -88,11 +97,12 @@ export const Select = (props: SelectProps): React.JSX.Element => {
         {isOpen && (
           <ul className={styles.select} data-testid="selectDropdown">
             {options
-              .filter((option) => selected?.value !== option.value)
+              .filter((option) => showSelectedOption || selected?.value !== option.value)
               .map((option) => (
                 <Option
                   key={option.value}
                   option={option}
+                  selected={selected?.value === option.value}
                   onClick={() => handleOptionClick(option)}
                 />
               ))}
